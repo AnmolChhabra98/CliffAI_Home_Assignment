@@ -24,7 +24,7 @@ public class TeamServiceImplementation implements TeamService {
 	@Override
 	public String createTeam(Team team) {
 		if(teamRepo.existsById(team.getId())) {
-			return team.getName()+ " team already exists.";
+			return "Team " + team.getId() + " already exists.";
 		}else {
 			try {
 				teamRepo.save(team);
