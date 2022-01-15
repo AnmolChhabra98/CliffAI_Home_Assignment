@@ -47,10 +47,14 @@ public class TeamServiceImplementation implements TeamService {
 	@Override
 	public String updateTeam(Team team) {
 		if(teamRepo.existsById(team.getId())) {
-			teamRepo.save(team);
-			return team.getName()+ " data updated successfully.";
+			try {
+				teamRepo.save(team);
+				return team.getName()+ " data updated successfully.";
+			}catch(Exception ex){
+				return "Not a valid input. Please give only valid input";
+			}
 		}else {
-			return "No such team exists.";
+			return "No such team with " +team.getId()+ " exists.";
 		}
 	}
 

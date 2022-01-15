@@ -17,12 +17,12 @@ import com.example.demo.service.PlayerService;
 
 @Service
 public class PlayerServiceImplementation implements PlayerService {
-	
+
 	@Autowired
 	private PlayerRepository playerRepo;
-	
+
 	private final static int PAGESIZE=1;
-	
+
 	//create player if player doesn't exist.
 	@Override
 	public String createPlayer(Player player) {
@@ -37,7 +37,7 @@ public class PlayerServiceImplementation implements PlayerService {
 			}
 		}
 	}
-	
+
 	//get player by id if player exists.
 	@Override
 	public Player findPlayer(int id) {
@@ -47,15 +47,19 @@ public class PlayerServiceImplementation implements PlayerService {
 			return null;
 		}
 	}
-	
+
 	//update player if player exists.
 	@Override
 	public String updatePlayer(Player player) {
 		if(playerRepo.existsById(player.getId())) {
-			playerRepo.save(player);
-			return player.getName()+ " data updated successfully.";
+			try {
+				playerRepo.save(player);
+				return player.getName()+ " data updated successfully.";
+			}catch(Exception ex) {
+				return "Not a valid input. Please give only valid input";
+			}
 		}else {
-			return "No such team exists.";
+			return "No such player with " +player.getId()+ " exists.";
 		}
 	}
 
@@ -66,21 +70,21 @@ public class PlayerServiceImplementation implements PlayerService {
 		if(player.isPresent()) {
 			String name = player.get().getName();
 			playerRepo.deleteById(id);
-			return name+ " team data deleted successfully.";	
+			return name+ " data deleted successfully.";	
 		}else {
-			return "No such team exists.";
+			return "No such player exists.";
 		}
 	}
-	
+
 	//getting list of all players.
 	@Override
 	public List<Player> getPlayers(int pageNo) {
 		Pageable page = PageRequest.of(pageNo, PAGESIZE);
 		Page<Player> paginatedResult = playerRepo.findAll(page);
-		
+
 		return paginatedResult.getContent();
 	}
-	
+
 	//getting players by giving team id
 	@Override
 	public ArrayList<Player> getPlayer(int teamId) {
