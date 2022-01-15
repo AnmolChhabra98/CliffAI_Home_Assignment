@@ -9,5 +9,5 @@ public interface TeamService {
 	Team findTeam(int id);
 	String updateTeam(Team team);
 	String deleteTeam(int id);
-	ArrayList<Team> getTeams(); 
+	ArrayList<Team> getTeams();
 }
