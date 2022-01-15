@@ -1,9 +1,12 @@
 package com.example.demo.service.implementation;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Team;
@@ -12,17 +15,23 @@ import com.example.demo.service.TeamService;
 
 @Service
 public class TeamServiceImplementation implements TeamService {
-	
+
 	@Autowired
 	private TeamRepository teamRepo;
-	
+
+	private final static Integer PAGESIZE = 1;
+
 	@Override
 	public String createTeam(Team team) {
 		if(teamRepo.existsById(team.getId())) {
-			return team.getName()+ " data already exists.";
+			return team.getName()+ " team already exists.";
 		}else {
-			teamRepo.save(team);
-			return team.getName()+ " data saved successfully.";
+			try {
+				teamRepo.save(team);
+				return team.getName()+ " team saved successfully.";
+			}catch(Exception ex) {
+				return "Not a valid input. Please enter valid input.";
+			}
 		}
 	}
 
@@ -57,9 +66,14 @@ public class TeamServiceImplementation implements TeamService {
 		}
 	}
 
+	//Getting only 1(i:e pagesize) record at a page.
 	@Override
-	public ArrayList<Team> getTeams() {
-		return (ArrayList<Team>) teamRepo.findAll();
+	public List<Team> getTeams(int pageNo) {
+		Pageable page = PageRequest.of(pageNo, PAGESIZE);
+		Page<Team> paginatedResult = teamRepo.findAll(page);
+		return paginatedResult.getContent();
+
+		//return (ArrayList<Team>) teamRepo.findAll();
 	}
 
 }

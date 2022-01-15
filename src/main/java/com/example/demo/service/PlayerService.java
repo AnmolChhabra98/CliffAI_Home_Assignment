@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.demo.model.Player;
 import com.example.demo.model.Team;
@@ -10,7 +11,7 @@ public interface PlayerService {
 	Player findPlayer(int id);
 	String updatePlayer(Player player);
 	String deletePlayer(int id);
-	ArrayList<Player> getPlayers();
+	List<Player> getPlayers(int pageNo);
 	
 	//cross functions
 	Team getTeam(int playerId);

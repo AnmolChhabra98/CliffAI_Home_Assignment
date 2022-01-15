@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -16,7 +17,7 @@ public class Team {
 	private String created_at;
 	private String updated_at;
 	
-	@OneToMany(mappedBy="team")
+	@OneToMany(mappedBy="team", cascade = CascadeType.ALL)
 	private List<Player> players;
 	
 	//default constructor

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -11,10 +12,8 @@ public class Player {
 	@Id
 	private int id;
 	
-	private String name;
-	private String age;
-	private String created_at;
-	private String updated_at;
+	@NotNull
+	private String name, age, created_at, updated_at;
 	
 	@ManyToOne()
 	@JoinColumn(name = "team_id")

@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.example.demo.model.Team;
 
@@ -9,5 +9,5 @@ public interface TeamService {
 	Team findTeam(int id);
 	String updateTeam(Team team);
 	String deleteTeam(int id);
-	ArrayList<Team> getTeams();
+	List<Team> getTeams(int pageNo);
 }
