@@ -53,7 +53,7 @@ public class PlayerController {
 		return new CustomResponse<List<Player>>("success","successfully retrive",playerService.getPlayers(pageNo));
 	}
 
-	//API: http://localhost:8085/get-players-by-teamid/{teamId}, UseCase: To get player by team id. 
+	//API: http://localhost:8085/get-players-by-teamid/{teamId}, UseCase: To get players by team id. 
 	@GetMapping("get-players-by-teamid/{teamId}")
 	public CustomResponse<ArrayList<Player>> getPlayerByTeamId(@PathVariable int teamId) {
 		return new CustomResponse<ArrayList<Player>>("success","successfully retrive",playerService.getPlayer(teamId));
