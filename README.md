@@ -17,11 +17,16 @@ Open project in any IDE (STS Prefered)
 
 Change MySQL username & password with your MySQL username & password in below mentioned file:  
 
-Path: CarScan_Home_Assignment/src/main/resources/application.properties  
+Path: CliffAI_Home_Assignment/src/main/resources/application.properties  
 • spring.datasource.username=yourMySQLUsername  
 • spring.datasource.password=yourMySQLPassword
 
 After successfully running the project it will automatically create a database(cliffai) with tables(Team & Player) having sample data.
+## Run Locally
+
+This is an example of running the Project locally (localhost), using port 8085.
+
+Note: You might have to wait for 1 to 2 minutes after running the application in order to get sample data populated in the respective tables.
 ## API Reference for Team.
 
 #### Create Team.
@@ -377,7 +382,7 @@ Try it out: http://localhost:8085/swagger-ui/index.html
 
 ## Scary JSON APIs 😨
 
-Check it here: http://localhost:8085/api-docs
+Check it here: http://localhost:8085/v3/api-docs
 ## Hire Me!
 
 If you find this Project helpful and want to hire a dev who can  
